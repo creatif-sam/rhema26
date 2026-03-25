@@ -195,7 +195,7 @@ export default function Home() {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form id="registration-form" onSubmit={handleSubmit} className="space-y-4">
           <PersonalInfoSection
             fullname={fullname}
             setFullname={setFullname}

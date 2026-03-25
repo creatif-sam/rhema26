@@ -56,8 +56,8 @@ function LoginForm() {
         }
       }
 
-      router.push("/admin");
-      router.refresh();
+      // Force full page reload to ensure server sees the new session
+      window.location.href = "/admin";
     } catch (err) {
       setError("Une erreur s'est produite. Veuillez réessayer.");
     } finally {

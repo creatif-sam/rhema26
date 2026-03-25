@@ -47,57 +47,57 @@ export function CountdownTimer() {
 
   return (
     <div className="w-full max-w-4xl mx-auto">
-      <div className="text-center mb-6">
-        <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+      <div className="text-center mb-4 md:mb-6">
+        <h3 className="text-xl md:text-3xl font-bold text-red-600 mb-2 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
           Le compte à rebours a commencé !
         </h3>
-        <p className="text-white/90 text-lg">
+        <p className="text-red-700 font-semibold text-base md:text-lg drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
           15-17 Mai 2026 • 19h00
         </p>
       </div>
       
-      <div className="grid grid-cols-4 gap-3 md:gap-6">
-        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 md:p-6 border-2 border-white/20 shadow-xl transform hover:scale-105 transition-transform duration-300">
-          <div className="text-4xl md:text-6xl font-bold text-white mb-2">
+      <div className="grid grid-cols-4 gap-2 md:gap-6">
+        <div className="bg-white/95 backdrop-blur-sm rounded-xl md:rounded-2xl p-3 md:p-6 border-2 border-red-600 shadow-2xl transform hover:scale-105 transition-transform duration-300">
+          <div className="text-3xl md:text-6xl font-bold text-red-600 mb-1 md:mb-2">
             {timeLeft.days}
           </div>
-          <div className="text-white/80 text-sm md:text-base font-medium uppercase tracking-wider">
+          <div className="text-red-700 text-xs md:text-base font-bold uppercase tracking-wide">
             Jours
           </div>
         </div>
 
-        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 md:p-6 border-2 border-white/20 shadow-xl transform hover:scale-105 transition-transform duration-300">
-          <div className="text-4xl md:text-6xl font-bold text-white mb-2">
+        <div className="bg-white/95 backdrop-blur-sm rounded-xl md:rounded-2xl p-3 md:p-6 border-2 border-red-600 shadow-2xl transform hover:scale-105 transition-transform duration-300">
+          <div className="text-3xl md:text-6xl font-bold text-red-600 mb-1 md:mb-2">
             {String(timeLeft.hours).padStart(2, '0')}
           </div>
-          <div className="text-white/80 text-sm md:text-base font-medium uppercase tracking-wider">
+          <div className="text-red-700 text-xs md:text-base font-bold uppercase tracking-wide">
             Heures
           </div>
         </div>
 
-        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 md:p-6 border-2 border-white/20 shadow-xl transform hover:scale-105 transition-transform duration-300">
-          <div className="text-4xl md:text-6xl font-bold text-white mb-2">
+        <div className="bg-white/95 backdrop-blur-sm rounded-xl md:rounded-2xl p-3 md:p-6 border-2 border-red-600 shadow-2xl transform hover:scale-105 transition-transform duration-300">
+          <div className="text-3xl md:text-6xl font-bold text-red-600 mb-1 md:mb-2">
             {String(timeLeft.minutes).padStart(2, '0')}
           </div>
-          <div className="text-white/80 text-sm md:text-base font-medium uppercase tracking-wider">
+          <div className="text-red-700 text-xs md:text-base font-bold uppercase tracking-wide">
             Minutes
           </div>
         </div>
 
-        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 md:p-6 border-2 border-white/20 shadow-xl transform hover:scale-105 transition-transform duration-300">
-          <div className="text-4xl md:text-6xl font-bold text-white mb-2">
+        <div className="bg-white/95 backdrop-blur-sm rounded-xl md:rounded-2xl p-3 md:p-6 border-2 border-red-600 shadow-2xl transform hover:scale-105 transition-transform duration-300">
+          <div className="text-3xl md:text-6xl font-bold text-red-600 mb-1 md:mb-2">
             {String(timeLeft.seconds).padStart(2, '0')}
           </div>
-          <div className="text-white/80 text-sm md:text-base font-medium uppercase tracking-wider">
+          <div className="text-red-700 text-xs md:text-base font-bold uppercase tracking-wide">
             Secondes
           </div>
         </div>
       </div>
 
-      <div className="mt-8 text-center">
+      <div className="mt-6 md:mt-8 text-center">
         <a 
           href="#registration-form"
-          className="inline-block bg-white text-red-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-red-50 transition-colors duration-300 shadow-2xl hover:shadow-3xl transform hover:scale-105"
+          className="inline-block bg-white text-red-600 px-6 md:px-8 py-3 md:py-4 rounded-full font-bold text-base md:text-lg border-2 border-red-600 hover:bg-red-600 hover:text-white transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:scale-105"
         >
           S&apos;inscrire Maintenant
         </a>

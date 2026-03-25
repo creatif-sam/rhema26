@@ -27,7 +27,7 @@ export function Footer() {
                 RHEMA <span className="text-secondary">2026</span>
               </h2>
               <p className="text-xs text-white/80 mt-1">
-                Séminaire National - Février 2026
+                Séminaire National 2026
               </p>
             </Link>
           </div>
