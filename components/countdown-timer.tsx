@@ -48,47 +48,47 @@ export function CountdownTimer() {
   return (
     <div className="w-full max-w-4xl mx-auto">
       <div className="text-center mb-4 md:mb-6">
-        <h3 className="text-xl md:text-3xl font-bold text-red-600 mb-2 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+        <h3 className="text-xl md:text-3xl font-bold text-red-600 mb-2 drop-shadow-[0_3px_6px_rgba(0,0,0,0.9)] [text-shadow:_1px_1px_6px_rgb(0_0_0_/_80%)]">
           Le compte à rebours a commencé !
         </h3>
-        <p className="text-red-700 font-semibold text-base md:text-lg drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+        <p className="text-red-600 font-bold text-base md:text-lg drop-shadow-[0_3px_6px_rgba(0,0,0,0.9)] [text-shadow:_1px_1px_6px_rgb(0_0_0_/_80%)]">
           15-17 Mai 2026 • 19h00
         </p>
       </div>
       
       <div className="grid grid-cols-4 gap-2 md:gap-6">
-        <div className="bg-white/95 backdrop-blur-sm rounded-xl md:rounded-2xl p-3 md:p-6 border-2 border-red-600 shadow-2xl transform hover:scale-105 transition-transform duration-300">
-          <div className="text-3xl md:text-6xl font-bold text-red-600 mb-1 md:mb-2">
+        <div className="bg-gradient-to-br from-red-600 via-red-500 to-orange-500 rounded-xl md:rounded-2xl p-3 md:p-6 border-2 border-white/30 shadow-2xl transform hover:scale-105 transition-transform duration-300">
+          <div className="text-3xl md:text-6xl font-bold text-white mb-1 md:mb-2 drop-shadow-lg">
             {timeLeft.days}
           </div>
-          <div className="text-red-700 text-xs md:text-base font-bold uppercase tracking-wide">
+          <div className="text-white/95 text-xs md:text-base font-bold uppercase tracking-wide">
             Jours
           </div>
         </div>
 
-        <div className="bg-white/95 backdrop-blur-sm rounded-xl md:rounded-2xl p-3 md:p-6 border-2 border-red-600 shadow-2xl transform hover:scale-105 transition-transform duration-300">
-          <div className="text-3xl md:text-6xl font-bold text-red-600 mb-1 md:mb-2">
+        <div className="bg-gradient-to-br from-red-600 via-red-500 to-orange-500 rounded-xl md:rounded-2xl p-3 md:p-6 border-2 border-white/30 shadow-2xl transform hover:scale-105 transition-transform duration-300">
+          <div className="text-3xl md:text-6xl font-bold text-white mb-1 md:mb-2 drop-shadow-lg">
             {String(timeLeft.hours).padStart(2, '0')}
           </div>
-          <div className="text-red-700 text-xs md:text-base font-bold uppercase tracking-wide">
+          <div className="text-white/95 text-xs md:text-base font-bold uppercase tracking-wide">
             Heures
           </div>
         </div>
 
-        <div className="bg-white/95 backdrop-blur-sm rounded-xl md:rounded-2xl p-3 md:p-6 border-2 border-red-600 shadow-2xl transform hover:scale-105 transition-transform duration-300">
-          <div className="text-3xl md:text-6xl font-bold text-red-600 mb-1 md:mb-2">
+        <div className="bg-gradient-to-br from-red-600 via-red-500 to-orange-500 rounded-xl md:rounded-2xl p-3 md:p-6 border-2 border-white/30 shadow-2xl transform hover:scale-105 transition-transform duration-300">
+          <div className="text-3xl md:text-6xl font-bold text-white mb-1 md:mb-2 drop-shadow-lg">
             {String(timeLeft.minutes).padStart(2, '0')}
           </div>
-          <div className="text-red-700 text-xs md:text-base font-bold uppercase tracking-wide">
+          <div className="text-white/95 text-xs md:text-base font-bold uppercase tracking-wide">
             Minutes
           </div>
         </div>
 
-        <div className="bg-white/95 backdrop-blur-sm rounded-xl md:rounded-2xl p-3 md:p-6 border-2 border-red-600 shadow-2xl transform hover:scale-105 transition-transform duration-300">
-          <div className="text-3xl md:text-6xl font-bold text-red-600 mb-1 md:mb-2">
+        <div className="bg-gradient-to-br from-red-600 via-red-500 to-orange-500 rounded-xl md:rounded-2xl p-3 md:p-6 border-2 border-white/30 shadow-2xl transform hover:scale-105 transition-transform duration-300">
+          <div className="text-3xl md:text-6xl font-bold text-white mb-1 md:mb-2 drop-shadow-lg">
             {String(timeLeft.seconds).padStart(2, '0')}
           </div>
-          <div className="text-red-700 text-[9px] md:text-base font-bold uppercase tracking-wide">
+          <div className="text-white/95 text-[9px] md:text-base font-bold uppercase tracking-wide">
             <span className="md:hidden">Sec</span>
             <span className="hidden md:inline">Secondes</span>
           </div>
@@ -98,7 +98,7 @@ export function CountdownTimer() {
       <div className="mt-6 md:mt-8 text-center">
         <a 
           href="#registration-form"
-          className="inline-block bg-white text-red-600 px-6 md:px-8 py-3 md:py-4 rounded-full font-bold text-base md:text-lg border-2 border-red-600 hover:bg-red-600 hover:text-white transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:scale-105"
+          className="inline-block bg-gradient-to-r from-red-600 to-orange-500 text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-bold text-base md:text-lg border-2 border-white/30 hover:from-red-700 hover:to-orange-600 transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:scale-105"
         >
           S&apos;inscrire Maintenant
         </a>

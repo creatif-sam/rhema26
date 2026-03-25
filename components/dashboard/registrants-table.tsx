@@ -163,40 +163,40 @@ export function RegistrantsTable({ registrations, onExportCSV }: RegistrantsTabl
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-secondary border-b border-border">
-                  <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-muted-foreground whitespace-nowrap">
+                  <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-red-600 whitespace-nowrap">
                     #
                   </th>
-                  <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-muted-foreground whitespace-nowrap">
+                  <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-red-600 whitespace-nowrap">
                     Nom & Prénoms
                   </th>
-                  <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-muted-foreground whitespace-nowrap">
+                  <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-red-600 whitespace-nowrap">
                     Nationalité
                   </th>
-                  <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-muted-foreground whitespace-nowrap">
+                  <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-red-600 whitespace-nowrap">
                     CIN/Passeport
                   </th>
-                  <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-muted-foreground whitespace-nowrap">
+                  <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-red-600 whitespace-nowrap">
                     Ville
                   </th>
-                  <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-muted-foreground whitespace-nowrap">
+                  <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-red-600 whitespace-nowrap">
                     Âge
                   </th>
-                  <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-muted-foreground whitespace-nowrap">
+                  <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-red-600 whitespace-nowrap">
                     Contact
                   </th>
-                  <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-muted-foreground whitespace-nowrap">
+                  <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-red-600 whitespace-nowrap">
                     Taille
                   </th>
-                  <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-muted-foreground whitespace-nowrap">
+                  <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-red-600 whitespace-nowrap">
                     Couleur
                   </th>
-                  <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-muted-foreground whitespace-nowrap">
+                  <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-red-600 whitespace-nowrap">
                     Football
                   </th>
-                  <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-muted-foreground whitespace-nowrap">
+                  <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-red-600 whitespace-nowrap">
                     Arrivée
                   </th>
-                  <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-muted-foreground whitespace-nowrap">
+                  <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-red-600 whitespace-nowrap">
                     Date
                   </th>
                 </tr>

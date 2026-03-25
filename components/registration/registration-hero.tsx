@@ -43,7 +43,9 @@ export function RegistrationHero() {
             />
           </div>
         ))}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
+        {/* Enhanced Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#51bfc8]/30 via-transparent to-[#b82938]/30" />
       </div>
 
       {/* Content */}
@@ -54,35 +56,35 @@ export function RegistrationHero() {
         </div>
 
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-4 leading-none">
-          <span className="block text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">Séminaire</span>
-          <span className="block text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+          <span className="block text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)] [text-shadow:_2px_2px_8px_rgb(0_0_0_/_80%)]">Séminaire</span>
+          <span className="block text-[#51bfc8] drop-shadow-[0_4px_12px_rgba(81,191,200,0.8)] [text-shadow:_2px_2px_8px_rgb(0_0_0_/_80%)]">
             RHEMA
           </span>
         </h1>
 
-        <p className="text-lg md:text-xl text-white/95 italic mb-12 font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+        <p className="text-lg md:text-xl text-red-500 italic mb-12 font-bold drop-shadow-[0_3px_10px_rgba(0,0,0,0.9)] [text-shadow:_1px_1px_6px_rgb(0_0_0_/_80%)]">
           Grandir ensemble dans la Parole et l'Esprit
         </p>
 
         <div className="flex flex-wrap gap-4 justify-center mb-10">
           <div className="flex items-center gap-3 bg-white/95 border-2 border-white/30 rounded-2xl px-5 py-3 backdrop-blur shadow-xl hover:shadow-2xl transition-shadow">
-            <FiCalendar className="w-5 h-5 text-primary" />
+            <FiCalendar className="w-5 h-5 text-[#b82938]" />
             <div className="text-left">
-              <div className="text-[11px] text-muted-foreground font-semibold uppercase tracking-wide">Dates</div>
+              <div className="text-[11px] text-[#b82938] font-semibold uppercase tracking-wide">Dates</div>
               <div className="text-sm font-bold">15 – 17 Mai 2026</div>
             </div>
           </div>
           <div className="flex items-center gap-3 bg-white/95 border-2 border-white/30 rounded-2xl px-5 py-3 backdrop-blur shadow-xl hover:shadow-2xl transition-shadow">
-            <FiMapPin className="w-5 h-5 text-primary" />
+            <FiMapPin className="w-5 h-5 text-[#b82938]" />
             <div className="text-left">
-              <div className="text-[11px] text-muted-foreground font-semibold uppercase tracking-wide">Lieu</div>
+              <div className="text-[11px] text-[#b82938] font-semibold uppercase tracking-wide">Lieu</div>
               <div className="text-sm font-bold">Casablanca, Maroc</div>
             </div>
           </div>
           <div className="flex items-center gap-3 bg-white/95 border-2 border-white/30 rounded-2xl px-5 py-3 backdrop-blur shadow-xl hover:shadow-2xl transition-shadow">
-            <FiClock className="w-5 h-5 text-primary" />
+            <FiClock className="w-5 h-5 text-[#b82938]" />
             <div className="text-left">
-              <div className="text-[11px] text-muted-foreground font-semibold uppercase tracking-wide">Ouverture</div>
+              <div className="text-[11px] text-[#b82938] font-semibold uppercase tracking-wide">Ouverture</div>
               <div className="text-sm font-bold">Vendredi 19h – 21h</div>
             </div>
           </div>
