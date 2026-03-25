@@ -2,6 +2,9 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { AdminDashboardClient } from "./admin-dashboard-client";
 
+// Force dynamic rendering to prevent build-time data fetching errors
+export const dynamic = 'force-dynamic';
+
 export default async function AdminDashboardPage() {
   const supabase = await createClient();
 
@@ -12,6 +15,18 @@ export default async function AdminDashboardPage() {
 
   if (!user) {
     redirect("/admin/login");
+  }
+
+  // Check if user has admin role
+  const { data: profile, error: profileError } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("id", user.id)
+    .single();
+
+  if (profileError || !profile || profile.role !== "admin") {
+    // User is not an admin, redirect to login with error
+    redirect("/admin/login?error=unauthorized");
   }
 
   // Fetch all registrations

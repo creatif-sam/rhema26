@@ -205,18 +205,18 @@ export function AdminDashboardClient({ registrations, pageVisits }: AdminDashboa
     <div className="min-h-screen bg-gray-50">
       <AdminNavigation onExportCSV={handleExportCSV} onLogout={handleLogout} />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-        <div className="mb-8">
-          <h2 className="text-4xl font-black tracking-tight mb-2">Tableau de bord</h2>
-          <p className="text-sm text-muted-foreground">Actualisé le {dateString}</p>
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6 lg:py-8">
+        <div className="mb-6 sm:mb-8">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight mb-2">Tableau de bord</h2>
+          <p className="text-xs sm:text-sm text-muted-foreground">Actualisé le {dateString}</p>
         </div>
 
         <DashboardStats stats={stats} />
 
         {/* Analytics Section */}
         {pageVisits.length > 0 && (
-          <div className="mb-8">
-            <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+          <div className="mb-6 sm:mb-8">
+            <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
               <div className="w-1 h-5 bg-secondary rounded-full" />
               Statistiques des visites
             </h3>
@@ -225,11 +225,11 @@ export function AdminDashboardClient({ registrations, pageVisits }: AdminDashboa
         )}
 
         {/* Registration Charts */}
-        <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+        <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
           <div className="w-1 h-5 bg-primary rounded-full" />
           Répartition des inscriptions
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 lg:gap-5 mb-6 sm:mb-8">
           <ChartBars title="Tailles tee-shirt" data={sizeData} total={total} />
           <ChartBars title="Couleurs choisies" data={colorData} total={total} />
           <ChartBars title="Niveau football" data={footballData} total={total} />

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,10 +10,18 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 
 export default function AdminLoginPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    // Check for unauthorized error from redirect
+    if (searchParams.get("error") === "unauthorized") {
+      setError("Accès refusé. Seuls les administrateurs peuvent accéder au tableau de bord.");
+    }
+  }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,7 +30,7 @@ export default function AdminLoginPage() {
 
     try {
       const supabase = createClient();
-      const { error: signInError } = await supabase.auth.signInWithPassword({
+      const { data, error: signInError } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
@@ -30,6 +38,22 @@ export default function AdminLoginPage() {
       if (signInError) {
         setError("Identifiants incorrects. Réessayez.");
         return;
+      }
+
+      // Check if user has admin role
+      if (data.user) {
+        const { data: profile, error: profileError } = await supabase
+          .from("profiles")
+          .select("role")
+          .eq("id", data.user.id)
+          .single();
+
+        if (profileError || !profile || profile.role !== "admin") {
+          // Sign out the user immediately
+          await supabase.auth.signOut();
+          setError("Accès refusé. Seuls les administrateurs peuvent se connecter ici.");
+          return;
+        }
       }
 
       router.push("/admin");

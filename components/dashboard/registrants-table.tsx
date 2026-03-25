@@ -57,20 +57,20 @@ export function RegistrantsTable({ registrations, onExportCSV }: RegistrantsTabl
 
   return (
     <Card className="mb-4 rounded-2xl border-border/40">
-      <div className="p-5 border-b border-border flex flex-wrap items-center justify-between gap-3">
+      <div className="p-3 sm:p-5 border-b border-border flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <h4 className="text-sm font-bold flex items-center gap-2">
           <div className="w-0.5 h-3.5 bg-primary rounded-full" />
           Liste des inscrits
         </h4>
         <div className="flex items-center gap-2 flex-wrap">
-          <div className="relative">
+          <div className="relative flex-1 sm:flex-initial">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
             <input
               type="text"
               placeholder="Rechercher…"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-9 pr-3 py-2 text-sm bg-secondary border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring w-56"
+              className="w-full sm:w-56 pl-9 pr-3 py-2 text-sm bg-secondary border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring"
             />
           </div>
           <Button onClick={onExportCSV} size="sm" className="font-semibold">
@@ -79,12 +79,86 @@ export function RegistrantsTable({ registrations, onExportCSV }: RegistrantsTabl
         </div>
       </div>
       <CardContent className="p-0">
-        <div className="overflow-x-auto">
-          {filteredRegistrations.length === 0 ? (
-            <div className="text-center py-14 text-sm text-muted-foreground">
-              Aucun inscrit trouvé.
+        {filteredRegistrations.length === 0 ? (
+          <div className="text-center py-14 text-sm text-muted-foreground">
+            Aucun inscrit trouvé.
+          </div>
+        ) : (
+          <>
+            {/* Mobile Card View */}
+            <div className="block md:hidden">
+              {filteredRegistrations.map((reg, index) => (
+                <div
+                  key={reg.id}
+                  className="border-b border-border/40 p-4 hover:bg-accent/30 transition-colors"
+                >
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex-1">
+                      <div className="font-bold text-base mb-1">{reg.fullname}</div>
+                      <div className="text-xs text-muted-foreground flex items-center gap-2 flex-wrap">
+                        <span>{reg.profession}</span>
+                        <span>•</span>
+                        <span>{reg.city}</span>
+                        {reg.age && (
+                          <>
+                            <span>•</span>
+                            <span>{reg.age} ans</span>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                    <span className="text-xs text-muted-foreground/60 ml-2">#{index + 1}</span>
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-2 text-xs">
+                    <div>
+                      <div className="text-muted-foreground mb-0.5">Contact</div>
+                      <div className="font-medium">{reg.phone}</div>
+                      {reg.whatsapp && (
+                        <div className="text-muted-foreground text-[11px]">{reg.whatsapp}</div>
+                      )}
+                    </div>
+                    <div>
+                      <div className="text-muted-foreground mb-0.5">Nationalité</div>
+                      <div className="font-medium">{reg.nationality}</div>
+                      <div className="text-muted-foreground text-[11px]">{reg.id_number}</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2 mt-3 flex-wrap">
+                    <Badge variant="secondary" className="font-semibold text-xs">
+                      {reg.tshirt_size}
+                    </Badge>
+                    <div className="flex items-center gap-1.5 px-2 py-1 bg-secondary rounded text-xs">
+                      <span
+                        className="inline-block w-2.5 h-2.5 rounded-full border border-border/40"
+                        style={{ backgroundColor: colorMap[reg.tshirt_color] || "#888" }}
+                      />
+                      {reg.tshirt_color}
+                    </div>
+                    {reg.football === "Oui" ? (
+                      <Badge className="text-xs">
+                        ⚽ {reg.foot_level?.replace("Niveau ", "") || "Oui"}
+                      </Badge>
+                    ) : (
+                      <Badge variant="outline" className="text-xs">
+                        Pas de foot
+                      </Badge>
+                    )}
+                  </div>
+
+                  <div className="mt-2 text-xs text-muted-foreground">
+                    <div>Arrivée: {reg.arrival || "Non précisé"}</div>
+                    <div className="text-[11px] mt-1">
+                      Inscrit le {new Date(reg.created_at).toLocaleDateString("fr-FR")}
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
-          ) : (
+
+            {/* Desktop Table View */}
+            <div className="overflow-x-auto hidden md:block">
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-secondary border-b border-border">
@@ -180,8 +254,9 @@ export function RegistrantsTable({ registrations, onExportCSV }: RegistrantsTabl
                 ))}
               </tbody>
             </table>
-          )}
-        </div>
+            </div>
+          </>
+        )}
       </CardContent>
     </Card>
   );
