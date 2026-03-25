@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Search } from "lucide-react";
+import { MdSportsSoccer } from "react-icons/md";
 
 interface Registration {
   id: string;
@@ -137,8 +138,8 @@ export function RegistrantsTable({ registrations, onExportCSV }: RegistrantsTabl
                       {reg.tshirt_color}
                     </div>
                     {reg.football === "Oui" ? (
-                      <Badge className="text-xs">
-                        ⚽ {reg.foot_level?.replace("Niveau ", "") || "Oui"}
+                      <Badge className="text-xs flex items-center gap-1 w-fit">
+                        <MdSportsSoccer className="w-3 h-3" /> {reg.foot_level?.replace("Niveau ", "") || "Oui"}
                       </Badge>
                     ) : (
                       <Badge variant="outline" className="text-xs">
@@ -237,8 +238,8 @@ export function RegistrantsTable({ registrations, onExportCSV }: RegistrantsTabl
                     </td>
                     <td className="px-4 py-3">
                       {reg.football === "Oui" ? (
-                        <Badge className="text-xs">
-                          ⚽ {reg.foot_level || "Oui"}
+                        <Badge className="text-xs flex items-center gap-1 w-fit">
+                          <MdSportsSoccer className="w-3 h-3" /> {reg.foot_level || "Oui"}
                         </Badge>
                       ) : (
                         <Badge variant="outline" className="text-xs">

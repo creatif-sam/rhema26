@@ -2,12 +2,13 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { FiTrendingUp, FiArrowUp, FiArrowDown } from "react-icons/fi";
+import { ReactNode } from "react";
 
 interface StatCard {
   label: string;
   value: number | string;
   subtitle: string;
-  icon: string;
+  icon: ReactNode;
   trend?: "up" | "down" | "neutral";
   trendValue?: string;
 }

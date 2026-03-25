@@ -1,13 +1,19 @@
 "use client";
 
+import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import * as XLSX from "xlsx";
 import { createClient } from "@/lib/supabase/client";
-import { AdminNavigation } from "@/components/dashboard/admin-navigation";
 import { DashboardStats } from "@/components/dashboard/dashboard-stats";
 import { ChartBars } from "@/components/dashboard/chart-bars";
 import { RegistrantsTable } from "@/components/dashboard/registrants-table";
 import { AnalyticsOverview } from "@/components/dashboard/analytics-overview";
+import { DashboardLayout } from "./components/dashboard-layout";
+import { DashboardHeader } from "./components/dashboard-header";
+import { DashboardFilters, FilterState } from "./components/dashboard-filters";
+import { FiClipboard, FiMusic, FiGlobe } from "react-icons/fi";
+import { MdSportsSoccer } from "react-icons/md";
 
 interface Registration {
   id: string;
@@ -60,11 +66,21 @@ const colorMap: Record<string, string> = {
 // Admin Dashboard Client Component with Analytics
 export function AdminDashboardClient({ registrations, pageVisits }: AdminDashboardClientProps) {
   const router = useRouter();
+  const [filters, setFilters] = useState<FilterState>({
+    city: "",
+    profession: "",
+    nationality: "",
+    football: "",
+    music: "",
+    tshirtSize: "",
+    tshirtColor: "",
+    arrival: "",
+  });
 
   const handleLogout = async () => {
     const supabase = createClient();
     await supabase.auth.signOut();
-    router.push("/admin/login");
+    router.push("/auth/login");
     router.refresh();
   };
 
@@ -135,8 +151,82 @@ export function AdminDashboardClient({ registrations, pageVisits }: AdminDashboa
     toast.success("Export CSV téléchargé !");
   };
 
+  const handleExportExcel = (data: Registration[], filterType: string) => {
+    if (data.length === 0) {
+      toast.error("Aucune donnée à exporter.");
+      return;
+    }
+
+    // Prepare data for Excel
+    const excelData = data.map((reg) => ({
+      Date: new Date(reg.created_at).toLocaleDateString("fr-FR"),
+      "Nom & Prénoms": reg.fullname,
+      "Nationalité": reg.nationality,
+      "CIN/Passeport": reg.id_number,
+      "Ville": reg.city,
+      "Profession": reg.profession || "",
+      "Âge": reg.age?.toString() || "",
+      "Téléphone": reg.phone,
+      "WhatsApp": reg.whatsapp || "",
+      "Groupe Musical": reg.music,
+      "Poste Musical": reg.music_role || "",
+      "Commission": reg.commission,
+      "Nom Commission": reg.commission_name || "",
+      "Arrivée": reg.arrival,
+      "Départ": reg.departure || "",
+      "Football": reg.football,
+      "Niveau Football": reg.foot_level || "",
+      "Taille T-shirt": reg.tshirt_size,
+      "Couleur T-shirt": reg.tshirt_color,
+      "Remarques": reg.remarks || "",
+    }));
+
+    // Create workbook and worksheet
+    const worksheet = XLSX.utils.json_to_sheet(excelData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Inscrits");
+
+    // Auto-size columns
+    const maxWidth = 50;
+    const colWidths = Object.keys(excelData[0] || {}).map((key) => ({
+      wch: Math.min(
+        Math.max(
+          key.length,
+          ...excelData.map((row) => String(row[key as keyof typeof row] || "").length)
+        ),
+        maxWidth
+      ),
+    }));
+    worksheet["!cols"] = colWidths;
+
+    // Generate filename
+    const filterLabel = filterType === "all" ? "tous" : filterType.replace("city_", "ville_");
+    const filename = `rhema2026_${filterLabel}_${new Date().toISOString().split("T")[0]}.xlsx`;
+
+    // Download file
+    XLSX.writeFile(workbook, filename);
+
+    toast.success(`Export Excel téléchargé ! (${data.length} inscrits)`);
+  };
+
+  // Apply filters to registrations
+  const filteredRegistrations = useMemo(() => {
+    return registrations.filter(reg => {
+      if (filters.city && reg.city !== filters.city) return false;
+      if (filters.profession && reg.profession !== filters.profession) return false;
+      if (filters.nationality && reg.nationality !== filters.nationality) return false;
+      if (filters.football && reg.football !== filters.football) return false;
+      if (filters.music && reg.music !== filters.music) return false;
+      if (filters.tshirtSize && reg.tshirt_size !== filters.tshirtSize) return false;
+      if (filters.tshirtColor && reg.tshirt_color !== filters.tshirtColor) return false;
+      if (filters.arrival && reg.arrival !== filters.arrival) return false;
+      return true;
+    });
+  }, [registrations, filters]);
+
   // Calculate statistics
   const total = registrations.length;
+  const totalFiltered = filteredRegistrations.length;
   const musicians = registrations.filter((r) => r.music === "Oui").length;
   const footballers = registrations.filter((r) => r.football === "Oui").length;
   const cities = new Set(
@@ -144,18 +234,18 @@ export function AdminDashboardClient({ registrations, pageVisits }: AdminDashboa
   ).size;
 
   const stats = [
-    { label: "Inscrits", value: total, subtitle: "total enregistrés", icon: "📋" },
-    { label: "Musiciens", value: musicians, subtitle: "groupe musical", icon: "🎵" },
-    { label: "Footballeurs", value: footballers, subtitle: "participent au foot", icon: "⚽" },
-    { label: "Villes", value: cities, subtitle: "représentées", icon: "🌍" },
+    { label: "Inscrits", value: total, subtitle: "total enregistrés", icon: <FiClipboard className="w-6 h-6" /> },
+    { label: "Musiciens", value: musicians, subtitle: "groupe musical", icon: <FiMusic className="w-6 h-6" /> },
+    { label: "Footballeurs", value: footballers, subtitle: "participent au foot", icon: <MdSportsSoccer className="w-6 h-6" /> },
+    { label: "Villes", value: cities, subtitle: "représentées", icon: <FiGlobe className="w-6 h-6" /> },
   ];
 
-  // Calculate distributions
+  // Calculate distributions (using filtered data)
   const tshirtSizes = ["S", "M", "L", "XL", "2XL", "3XL"];
   const sizeData = tshirtSizes
     .map((size) => ({
       label: size,
-      count: registrations.filter((r) => r.tshirt_size === size).length,
+      count: filteredRegistrations.filter((r) => r.tshirt_size === size).length,
     }))
     .filter((item) => item.count > 0);
 
@@ -163,7 +253,7 @@ export function AdminDashboardClient({ registrations, pageVisits }: AdminDashboa
   const colorData = tshirtColors
     .map((color) => ({
       label: color,
-      count: registrations.filter((r) => r.tshirt_color === color).length,
+      count: filteredRegistrations.filter((r) => r.tshirt_color === color).length,
       color: colorMap[color],
     }))
     .filter((item) => item.count > 0);
@@ -172,11 +262,11 @@ export function AdminDashboardClient({ registrations, pageVisits }: AdminDashboa
   const footballData = [
     ...footballLevels.map((level) => ({
       label: level,
-      count: registrations.filter((r) => r.foot_level === level).length,
+      count: filteredRegistrations.filter((r) => r.foot_level === level).length,
     })),
     {
       label: "Ne joue pas",
-      count: registrations.filter((r) => r.football !== "Oui").length,
+      count: filteredRegistrations.filter((r) => r.football !== "Oui").length,
     },
   ].filter((item) => item.count > 0);
 
@@ -189,55 +279,49 @@ export function AdminDashboardClient({ registrations, pageVisits }: AdminDashboa
   const arrivalData = arrivalTimes
     .map((time) => ({
       label: time,
-      count: registrations.filter((r) => r.arrival === time).length,
+      count: filteredRegistrations.filter((r) => r.arrival === time).length,
     }))
     .filter((item) => item.count > 0);
 
-  const now = new Date();
-  const dateString = now.toLocaleDateString("fr-FR", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-
   return (
-    <div className="min-h-screen bg-gray-50">
-      <AdminNavigation onExportCSV={handleExportCSV} onLogout={handleLogout} />
+    <DashboardLayout onExportCSV={handleExportCSV} onLogout={handleLogout}>
+      <DashboardHeader title="Tableau de bord" />
 
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6 lg:py-8">
-        <div className="mb-6 sm:mb-8">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight mb-2">Tableau de bord</h2>
-          <p className="text-xs sm:text-sm text-muted-foreground">Actualisé le {dateString}</p>
+      <DashboardStats stats={stats} />
+
+      {/* Filters Section */}
+      <DashboardFilters
+        registrations={registrations}
+        onFilterChange={setFilters}
+        onExport={handleExportExcel}
+      />
+
+      {/* Analytics Section */}
+      {pageVisits.length > 0 && (
+        <div id="stats" className="mb-6 sm:mb-8 scroll-mt-20">
+          <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
+            <div className="w-1 h-5 bg-secondary rounded-full" />
+            Statistiques des visites
+          </h3>
+          <AnalyticsOverview visits={pageVisits} />
         </div>
+      )}
 
-        <DashboardStats stats={stats} />
-
-        {/* Analytics Section */}
-        {pageVisits.length > 0 && (
-          <div className="mb-6 sm:mb-8">
-            <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
-              <div className="w-1 h-5 bg-secondary rounded-full" />
-              Statistiques des visites
-            </h3>
-            <AnalyticsOverview visits={pageVisits} />
-          </div>
-        )}
-
-        {/* Registration Charts */}
-        <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
-          <div className="w-1 h-5 bg-primary rounded-full" />
-          Répartition des inscriptions
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 lg:gap-5 mb-6 sm:mb-8">
-          <ChartBars title="Tailles tee-shirt" data={sizeData} total={total} />
-          <ChartBars title="Couleurs choisies" data={colorData} total={total} />
-          <ChartBars title="Niveau football" data={footballData} total={total} />
-          <ChartBars title="Arrivées prévues" data={arrivalData} total={total} />
-        </div>
-
-        <RegistrantsTable registrations={registrations} onExportCSV={handleExportCSV} />
+      {/* Registration Charts */}
+      <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
+        <div className="w-1 h-5 bg-primary rounded-full" />
+        Répartition des inscriptions
+      </h3>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 lg:gap-5 mb-6 sm:mb-8">
+        <ChartBars title="Tailles tee-shirt" data={sizeData} total={totalFiltered} />
+        <ChartBars title="Couleurs choisies" data={colorData} total={totalFiltered} />
+        <ChartBars title="Niveau football" data={footballData} total={totalFiltered} />
+        <ChartBars title="Arrivées prévues" data={arrivalData} total={totalFiltered} />
       </div>
-    </div>
+
+      <div id="registrants" className="scroll-mt-20">
+        <RegistrantsTable registrations={filteredRegistrations} onExportCSV={handleExportCSV} />
+      </div>
+    </DashboardLayout>
   );
 }

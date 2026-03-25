@@ -70,7 +70,7 @@ export function Navigation() {
                 </Button>
               </Link>
               
-              <Link href="/admin/login">
+              <Link href="/auth/login">
                 <Button 
                   variant="outline" 
                   size="sm" 
@@ -129,7 +129,7 @@ export function Navigation() {
                   S'inscrire
                 </Button>
               </Link>
-              <Link href="/admin/login">
+              <Link href="/auth/login">
                 <Button variant="outline" className="w-full" size="sm" onClick={() => setMobileMenuOpen(false)}>
                   <FiLogIn className="w-4 h-4 mr-1.5" />
                   Se connecter
@@ -196,10 +196,10 @@ export function Navigation() {
           </Link>
 
           <Link
-            href="/admin/login"
+            href="/auth/login"
             className={cn(
               "flex flex-col items-center justify-center py-2 px-1 rounded-lg transition-colors",
-              pathname === "/admin/login"
+              pathname === "/auth/login"
                 ? "text-primary bg-primary/10"
                 : "text-muted-foreground hover:text-foreground hover:bg-accent/10"
             )}

@@ -34,12 +34,52 @@ export function LoginForm({
     setError(null);
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      // Sign in the user
+      const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
-      if (error) throw error;
-      router.push("/admin");
+      
+      if (authError) throw authError;
+      
+      if (!authData.user) {
+        throw new Error("Erreur d'authentification");
+      }
+
+      // Check user role in profiles table
+      const { data: profile, error: profileError } = await supabase
+        .from("profiles")
+        .select("role")
+        .eq("id", authData.user.id)
+        .single();
+
+      if (profileError) {
+        console.error("Error fetching profile:", profileError);
+        // If profile doesn't exist, create one with 'user' role
+        const { error: insertError } = await supabase
+          .from("profiles")
+          .insert([{ id: authData.user.id, role: "user" }]);
+        
+        if (insertError) {
+          console.error("Error creating profile:", insertError);
+        }
+        
+        // Redirect non-admin to work-in-progress page
+        router.push("/user-dashboard");
+        return;
+      }
+
+      // Ensure session is set
+      await supabase.auth.getSession();
+      
+      // Redirect based on role
+      if (profile.role === "admin") {
+        router.push("/admin");
+        router.refresh();
+      } else {
+        router.push("/user-dashboard");
+        router.refresh();
+      }
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : "Une erreur s'est produite");
     } finally {

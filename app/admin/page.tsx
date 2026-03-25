@@ -14,7 +14,7 @@ export default async function AdminDashboardPage() {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    redirect("/admin/login");
+    redirect("/auth/login");
   }
 
   // Check if user has admin role
@@ -25,8 +25,7 @@ export default async function AdminDashboardPage() {
     .single();
 
   if (profileError || !profile || profile.role !== "admin") {
-    // User is not an admin, redirect to login with error
-    redirect("/admin/login?error=unauthorized");
+    redirect("/auth/login?error=unauthorized");
   }
 
   // Fetch all registrations
