@@ -10,11 +10,6 @@ const photos = [
   "/photos2025/photo2.jpg",
   "/photos2025/photo3.jpg",
   "/photos2025/photo4.jpg",
-  "/photos2025/photo5.jpg",
-  "/photos2025/photo6.jpg",
-  "/photos2025/photo7-overall.jpg",
-  "/photos2025/photo8.jpg",
-  "/photos2025/photo9.jpg",
 ];
 
 export function RegistrationHero() {
@@ -23,47 +18,68 @@ export function RegistrationHero() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentPhotoIndex((prev) => (prev + 1) % photos.length);
-    }, 4000); // Change photo every 4 seconds
+    }, 5000); // Change photo every 5 seconds
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="relative min-h-[520px] flex flex-col items-center justify-center text-center px-6 py-20 overflow-hidden bg-gradient-to-br from-primary/10 via-secondary/10 to-primary/20">
+    <div className="relative min-h-[520px] flex flex-col items-center justify-center text-center px-6 py-20 overflow-hidden">
+      {/* Photo Slider Background */}
+      <div className="absolute inset-0 z-0">
+        {photos.map((photo, index) => (
+          <div
+            key={photo}
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              index === currentPhotoIndex ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <Image
+              src={photo}
+              alt={`RHEMA 2026 Photo ${index + 1}`}
+              fill
+              className="object-cover"
+              priority={index === 0}
+            />
+          </div>
+        ))}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
+      </div>
+
       {/* Content */}
       <div className="relative z-10 max-w-3xl">
-        <div className="inline-flex items-center gap-2 bg-primary/10 border-2 border-primary/30 rounded-full px-5 py-2 text-xs font-bold tracking-wider uppercase text-primary mb-8 shadow-sm">
-          <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+        <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/20 rounded-full px-5 py-2 text-xs font-bold tracking-wider uppercase text-white mb-8 shadow-sm">
+          <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
           8ème Édition · RHEMA 2026
         </div>
 
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-4 leading-none">
-          <span className="block text-foreground">Séminaire</span>
-          <span className="block bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
+          <span className="block text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">Séminaire</span>
+          <span className="block text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
             RHEMA
           </span>
         </h1>
 
-        <p className="text-lg md:text-xl text-muted-foreground italic mb-12 font-medium">
+        <p className="text-lg md:text-xl text-white/95 italic mb-12 font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
           Grandir ensemble dans la Parole et l'Esprit
         </p>
 
         <div className="flex flex-wrap gap-4 justify-center mb-10">
-          <div className="flex items-center gap-3 bg-white/95 border-2 border-border rounded-2xl px-5 py-3 backdrop-blur shadow-md hover:shadow-lg transition-shadow">
+          <div className="flex items-center gap-3 bg-white/95 border-2 border-white/30 rounded-2xl px-5 py-3 backdrop-blur shadow-xl hover:shadow-2xl transition-shadow">
             <FiCalendar className="w-5 h-5 text-primary" />
             <div className="text-left">
               <div className="text-[11px] text-muted-foreground font-semibold uppercase tracking-wide">Dates</div>
               <div className="text-sm font-bold">15 – 17 Mai 2026</div>
             </div>
           </div>
-          <div className="flex items-center gap-3 bg-white/95 border-2 border-border rounded-2xl px-5 py-3 backdrop-blur shadow-md hover:shadow-lg transition-shadow">
+          <div className="flex items-center gap-3 bg-white/95 border-2 border-white/30 rounded-2xl px-5 py-3 backdrop-blur shadow-xl hover:shadow-2xl transition-shadow">
             <FiMapPin className="w-5 h-5 text-primary" />
             <div className="text-left">
               <div className="text-[11px] text-muted-foreground font-semibold uppercase tracking-wide">Lieu</div>
               <div className="text-sm font-bold">Casablanca, Maroc</div>
             </div>
           </div>
-          <div className="flex items-center gap-3 bg-white/95 border-2 border-border rounded-2xl px-5 py-3 backdrop-blur shadow-md hover:shadow-lg transition-shadow">
+          <div className="flex items-center gap-3 bg-white/95 border-2 border-white/30 rounded-2xl px-5 py-3 backdrop-blur shadow-xl hover:shadow-2xl transition-shadow">
             <FiClock className="w-5 h-5 text-primary" />
             <div className="text-left">
               <div className="text-[11px] text-muted-foreground font-semibold uppercase tracking-wide">Ouverture</div>
@@ -74,6 +90,22 @@ export function RegistrationHero() {
 
         {/* Countdown Timer */}
         <CountdownTimer />
+      </div>
+
+      {/* Photo Indicators */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+        {photos.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentPhotoIndex(index)}
+            className={`h-2 rounded-full transition-all ${
+              index === currentPhotoIndex
+                ? "w-10 bg-white"
+                : "w-2 bg-white/40 hover:bg-white/60"
+            }`}
+            aria-label={`Photo ${index + 1}`}
+          />
+        ))}
       </div>
     </div>
   );

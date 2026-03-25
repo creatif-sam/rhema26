@@ -37,30 +37,52 @@ function LoginForm() {
 
       if (signInError) {
         setError("Identifiants incorrects. Réessayez.");
+        setIsLoading(false);
         return;
       }
 
       // Check if user has admin role
       if (data.user) {
-        const { data: profile, error: profileError } = await supabase
+        // First, ensure profile exists
+        const { data: existingProfile } = await supabase
           .from("profiles")
           .select("role")
           .eq("id", data.user.id)
           .single();
 
-        if (profileError || !profile || profile.role !== "admin") {
-          // Sign out the user immediately
+        // If profile doesn't exist, create it with user role
+        if (!existingProfile) {
+          const { error: insertError } = await supabase
+            .from("profiles")
+            .insert({ id: data.user.id, role: "user" });
+          
+          if (insertError) {
+            console.error("Error creating profile:", insertError);
+          }
+          
+          await supabase.auth.signOut();
+          setError("Votre profil a été créé. Contactez un administrateur pour obtenir l'accès.");
+          setIsLoading(false);
+          return;
+        }
+
+        // Check if user has admin role
+        if (existingProfile.role !== "admin") {
           await supabase.auth.signOut();
           setError("Accès refusé. Seuls les administrateurs peuvent se connecter ici.");
+          setIsLoading(false);
           return;
         }
       }
 
+      // Add a small delay to ensure session is set
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
       // Force full page reload to ensure server sees the new session
       window.location.href = "/admin";
     } catch (err) {
+      console.error("Login error:", err);
       setError("Une erreur s'est produite. Veuillez réessayer.");
-    } finally {
       setIsLoading(false);
     }
   };

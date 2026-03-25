@@ -1,26 +1,77 @@
 "use client";
 
+import { useState } from "react";
+import Image from "next/image";
 import { FiCalendar, FiFacebook } from "react-icons/fi";
 
+const photos = [
+  "/photos2025/photo1.jpg",
+  "/photos2025/photo2.jpg",
+  "/photos2025/photo3.jpg",
+  "/photos2025/photo4.jpg",
+  "/photos2025/photo5.jpg",
+  "/photos2025/photo6.jpg",
+  "/photos2025/photo7-overall.jpg",
+  "/photos2025/photo8.jpg",
+  "/photos2025/photo9.jpg",
+];
+
 export default function EditionsPrecedentesPage() {
+  const [selectedPhoto, setSelectedPhoto] = useState(0);
+
   return (
     <div className="min-h-screen bg-white pb-20 md:pb-0">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary/10 via-secondary/5 to-white py-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-white border-2 border-primary/20 rounded-full px-5 py-2 text-xs font-bold tracking-wider uppercase text-primary mb-6 shadow-sm">
+      {/* Hero Section with Photos */}
+      <section className="relative h-[60vh] min-h-[400px] overflow-hidden">
+        <div className="absolute inset-0">
+          {photos.map((photo, index) => (
+            <div
+              key={photo}
+              className={`absolute inset-0 transition-opacity duration-700 ${
+                index === selectedPhoto ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <Image
+                src={photo}
+                alt={`Séminaire RHEMA ${index + 1}`}
+                fill
+                className="object-cover"
+                priority={index === 0}
+              />
+            </div>
+          ))}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+        </div>
+
+        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
+          <div className="inline-flex items-center gap-2 bg-primary/20 backdrop-blur-md border border-white/20 rounded-full px-5 py-2 text-xs font-bold tracking-wider uppercase text-white mb-6">
             <FiCalendar className="w-4 h-4" />
             Archives
           </div>
           
-          <h1 className="text-5xl md:text-6xl font-black text-foreground mb-6 tracking-tight">
+          <h1 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tight">
             Éditions Précédentes
           </h1>
           
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Revivez les moments forts des séminaires RHEMA passés et découvrez l'impact 
-            de ces rassemblements sur notre communauté.
+          <p className="text-xl md:text-2xl text-white/90 max-w-3xl font-medium">
+            Revivez les moments forts des séminaires RHEMA
           </p>
+        </div>
+
+        {/* Photo indicators */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+          {photos.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setSelectedPhoto(index)}
+              className={`h-2 rounded-full transition-all ${
+                index === selectedPhoto
+                  ? "w-10 bg-white"
+                  : "w-2 bg-white/40 hover:bg-white/60"
+              }`}
+              aria-label={`Photo ${index + 1}`}
+            />
+          ))}
         </div>
       </section>
 

@@ -2,6 +2,8 @@
 
 ## Task 1: Update All Users to Admin
 
+**IMPORTANT:** Before logging in as admin, make sure your user account has a profile with admin role.
+
 Run this SQL query in your Supabase SQL Editor to make all existing users admins:
 
 ```sql
@@ -9,6 +11,30 @@ Run this SQL query in your Supabase SQL Editor to make all existing users admins
 UPDATE profiles 
 SET role = 'admin' 
 WHERE role = 'user' OR role IS NULL OR role != 'admin';
+```
+
+### If your user doesn't have a profile yet:
+
+```sql
+-- Check if your user ID exists in profiles table
+SELECT id, role FROM profiles WHERE id = 'YOUR_USER_ID_HERE';
+
+-- If not found, create a profile with admin role
+-- Replace 'YOUR_USER_ID_HERE' with your actual user ID from auth.users table
+INSERT INTO profiles (id, role) 
+VALUES ('YOUR_USER_ID_HERE', 'admin');
+```
+
+### Find your user ID:
+
+```sql
+-- Get all authenticated users and their profiles
+SELECT 
+  u.id,
+  u.email,
+  p.role
+FROM auth.users u
+LEFT JOIN profiles p ON u.id = p.id;
 ```
 
 ## Task 4: Fix Registration Form 400 Error
