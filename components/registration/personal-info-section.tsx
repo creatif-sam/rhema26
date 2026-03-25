@@ -66,7 +66,7 @@ export function PersonalInfoSection({
           <Input
             id="nationality"
             type="text"
-            placeholder="Ex : Marocaine"
+            placeholder="Ex : Ivoirienne"
             value={nationality}
             onChange={(e) => setNationality(e.target.value)}
             required
@@ -143,13 +143,16 @@ export function PersonalInfoSection({
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="whatsapp">Numéro WhatsApp</Label>
+          <Label htmlFor="whatsapp">
+            Numéro WhatsApp <span className="text-destructive">*</span>
+          </Label>
           <Input
             id="whatsapp"
             type="tel"
             placeholder="+212 6 00 00 00 00"
             value={whatsapp}
             onChange={(e) => setWhatsapp(e.target.value)}
+            required
           />
         </div>
       </div>

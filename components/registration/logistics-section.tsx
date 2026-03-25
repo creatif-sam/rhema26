@@ -64,8 +64,7 @@ export function LogisticsSection({
             <option value="">— Sélectionner —</option>
             <option value="Dimanche après la clôture">Dimanche après la clôture</option>
             <option value="Dimanche soir">Dimanche soir</option>
-            <option value="Lundi matin">Lundi matin</option>
-            <option value="Plus tard dans la semaine">Plus tard dans la semaine</option>
+            
           </select>
         </div>
 

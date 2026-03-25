@@ -108,6 +108,10 @@ export default function Home() {
       toast.error("Veuillez saisir un numéro joignable.");
       return;
     }
+    if (!whatsapp.trim()) {
+      toast.error("Veuillez saisir votre numéro WhatsApp.");
+      return;
+    }
     if (!arrival) {
       toast.error("Veuillez indiquer votre date d'arrivée.");
       return;
@@ -141,7 +145,7 @@ export default function Home() {
         profession: profession.trim(),
         age: age ? parseInt(age) : null,
         phone: phone.trim(),
-        whatsapp: whatsapp.trim() || null,
+        whatsapp: whatsapp.trim(),
         music,
         music_role: music === "Oui" ? musicRole.trim() : null,
         commission,
