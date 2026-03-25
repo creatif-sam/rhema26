@@ -51,9 +51,6 @@ export function CountdownTimer() {
         <h3 className="text-xl md:text-3xl font-bold text-red-600 mb-2 drop-shadow-[0_3px_6px_rgba(0,0,0,0.9)] [text-shadow:_1px_1px_6px_rgb(0_0_0_/_80%)]">
           Le compte à rebours a commencé !
         </h3>
-        <p className="text-red-600 font-bold text-base md:text-lg drop-shadow-[0_3px_6px_rgba(0,0,0,0.9)] [text-shadow:_1px_1px_6px_rgb(0_0_0_/_80%)]">
-          15-17 Mai 2026 • 19h00
-        </p>
       </div>
       
       <div className="grid grid-cols-4 gap-2 md:gap-6">
