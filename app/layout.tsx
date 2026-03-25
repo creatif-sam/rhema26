@@ -9,8 +9,9 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "Next.js and Supabase Starter Kit",
-  description: "The fastest way to build apps with Next.js and Supabase",
+  title: "RHEMA 2026 - Séminaire National HEEAM | Inscription",
+  description: "Inscription au Séminaire National RHEMA 2026 organisé par HEEAM. Rejoignez-nous du 15 au 17 Mai 2026 à Casablanca pour grandir ensemble dans la Parole et l'Esprit.",
+  keywords: ["RHEMA", "HEEAM", "séminaire", "Casablanca", "Maroc", "2026", "inscription", "église évangélique"],
 };
 
 const geistSans = Geist({
