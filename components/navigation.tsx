@@ -21,7 +21,6 @@ export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { label: "EEAM", href: "https://egliseevangeliqueaumaroc.fr/#", external: true },
     { label: "HEEAM", href: "/heeam", icon: FiUsers },
     { label: "Éditions Précédentes", href: "/editions-precedentes", icon: FiCalendar },
   ];
@@ -50,30 +49,18 @@ export function Navigation() {
 
             <div className="flex items-center gap-1">
               {navItems.map((item) => (
-                item.external ? (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 py-2 rounded-lg text-sm font-medium text-foreground/70 hover:text-foreground hover:bg-accent/10 transition-colors"
-                  >
-                    {item.label}
-                  </a>
-                ) : (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    className={cn(
-                      "px-4 py-2 rounded-lg text-sm font-medium transition-colors",
-                      pathname === item.href
-                        ? "bg-primary/10 text-primary"
-                        : "text-foreground/70 hover:text-foreground hover:bg-accent/10"
-                    )}
-                  >
-                    {item.label}
-                  </Link>
-                )
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className={cn(
+                    "px-4 py-2 rounded-lg text-sm font-medium transition-colors",
+                    pathname === item.href
+                      ? "bg-primary/10 text-primary"
+                      : "text-foreground/70 hover:text-foreground hover:bg-accent/10"
+                  )}
+                >
+                  {item.label}
+                </Link>
               ))}
               
               <Link href="/">
@@ -122,32 +109,19 @@ export function Navigation() {
           <div className="md:hidden absolute top-16 left-0 right-0 bg-white border-b border-border shadow-lg">
             <div className="p-4 space-y-2">
               {navItems.map((item) => (
-                item.external ? (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block px-4 py-3 rounded-lg text-sm font-medium text-foreground/70 hover:text-foreground hover:bg-accent/10"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                  </a>
-                ) : (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    className={cn(
-                      "block px-4 py-3 rounded-lg text-sm font-medium",
-                      pathname === item.href
-                        ? "bg-primary/10 text-primary"
-                        : "text-foreground/70 hover:text-foreground hover:bg-accent/10"
-                    )}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                )
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className={cn(
+                    "block px-4 py-3 rounded-lg text-sm font-medium",
+                    pathname === item.href
+                      ? "bg-primary/10 text-primary"
+                      : "text-foreground/70 hover:text-foreground hover:bg-accent/10"
+                  )}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
               ))}
               <Link href="/">
                 <Button className="w-full" size="sm" onClick={() => setMobileMenuOpen(false)}>
@@ -182,16 +156,6 @@ export function Navigation() {
             <span className="text-[10px] font-medium">Accueil</span>
           </Link>
 
-          <a
-            href="https://egliseevangeliqueaumaroc.fr/#"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex flex-col items-center justify-center py-2 px-1 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent/10 transition-colors"
-          >
-            <FiHome className="w-5 h-5 mb-0.5" />
-            <span className="text-[10px] font-medium">EEAM</span>
-          </a>
-
           <Link
             href="/heeam"
             className={cn(
@@ -203,6 +167,19 @@ export function Navigation() {
           >
             <FiUsers className="w-5 h-5 mb-0.5" />
             <span className="text-[10px] font-medium">HEEAM</span>
+          </Link>
+
+          <Link
+            href="/inscription"
+            className={cn(
+              "flex flex-col items-center justify-center py-2 px-1 rounded-lg transition-colors",
+              pathname === "/inscription"
+                ? "text-primary bg-primary/10"
+                : "text-muted-foreground hover:text-foreground hover:bg-accent/10"
+            )}
+          >
+            <FiEdit className="w-5 h-5 mb-0.5" />
+            <span className="text-[10px] font-medium">Inscription</span>
           </Link>
 
           <Link

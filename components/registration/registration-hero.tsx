@@ -3,6 +3,7 @@
 import { FiCalendar, FiMapPin, FiClock } from "react-icons/fi";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { CountdownTimer } from "@/components/countdown-timer";
 
 const photos = [
   "/photos2025/photo1.jpg",
@@ -146,16 +147,8 @@ export function RegistrationHero() {
           </div>
         </div>
 
-        {/* Register Button */}
-        <a
-          href="#registration-form"
-          className="inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-white font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 animate-pulse hover:animate-none hover:scale-105"
-        >
-          <span className="text-lg">S'inscrire Maintenant</span>
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-          </svg>
-        </a>
+        {/* Countdown Timer */}
+        <CountdownTimer />
       </div>
     </div>
   );

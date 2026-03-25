@@ -115,6 +115,166 @@ export default function EditionsPrecedentesPage() {
           </div>
         </div>
 
+        {/* 2024 Edition */}
+        <div className="mt-16 grid md:grid-cols-2 gap-12 items-start">
+          <div className="space-y-6">
+            <h2 className="text-3xl font-bold text-foreground">
+              Séminaire RHEMA 2024
+            </h2>
+            <div className="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-2xl p-6 border border-primary/20">
+              <h3 className="font-bold text-lg mb-2 text-foreground">Thème 2024</h3>
+              <p className="text-muted-foreground italic">
+                "Homme Orimos pour bâtir dans l'excellence une vie équilibrée"
+              </p>
+            </div>
+          </div>
+
+          <div className="sticky top-24">
+            <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-border">
+              <div className="bg-gradient-to-r from-primary to-secondary p-4">
+                <h3 className="text-white font-bold text-center">
+                  Publication Facebook - RHEMA 2024
+                </h3>
+              </div>
+              <div className="p-4 bg-gray-50">
+                <div className="relative w-full" style={{ minHeight: '627px' }}>
+                  <iframe 
+                    src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid02hF7ypxZ1nQ1zDSv4iComQwPYdMN6LwhvoExY5yE6xPSGcMTsJ8t43Lg9fJEQQL3ml%26id%3D100083183415660&show_text=true&width=500"
+                    width="100%" 
+                    height="627" 
+                    style={{ border: 'none', overflow: 'hidden' }}
+                    scrolling="no" 
+                    frameBorder="0" 
+                    allowFullScreen={true}
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                    className="rounded-lg"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 2023 Edition */}
+        <div className="mt-16 grid md:grid-cols-2 gap-12 items-start">
+          <div className="space-y-6">
+            <h2 className="text-3xl font-bold text-foreground">
+              Séminaire RHEMA 2023
+            </h2>
+            <div className="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-2xl p-6 border border-primary/20">
+              <h3 className="font-bold text-lg mb-2 text-foreground">Thème 2023</h3>
+              <p className="text-muted-foreground italic">
+                "Sois un homme teleios selon le dessein de Dieu"
+              </p>
+            </div>
+          </div>
+
+          <div className="sticky top-24">
+            <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-border">
+              <div className="bg-gradient-to-r from-primary to-secondary p-4">
+                <h3 className="text-white font-bold text-center">
+                  Publication Facebook - RHEMA 2023
+                </h3>
+              </div>
+              <div className="p-4 bg-gray-50">
+                <div className="relative w-full" style={{ minHeight: '497px' }}>
+                  <iframe 
+                    src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0tdBtQLi87wtNsBfi73KC6ZaXSrFG9Up7ghM9CJB5UodP21ratzLjeGmk1rnxXKHcl%26id%3D100083183415660&show_text=true&width=500"
+                    width="100%" 
+                    height="497" 
+                    style={{ border: 'none', overflow: 'hidden' }}
+                    scrolling="no" 
+                    frameBorder="0" 
+                    allowFullScreen={true}
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                    className="rounded-lg"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 2022 Edition */}
+        <div className="mt-16 grid md:grid-cols-2 gap-12 items-start">
+          <div className="space-y-6">
+            <h2 className="text-3xl font-bold text-foreground">
+              Séminaire RHEMA 2022
+            </h2>
+            <div className="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-2xl p-6 border border-primary/20">
+              <h3 className="font-bold text-lg mb-2 text-foreground">Thème 2022</h3>
+              <p className="text-muted-foreground italic">
+                "Homme Photizo, Choisi pour impacter"
+              </p>
+            </div>
+          </div>
+
+          <div className="sticky top-24">
+            <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-border">
+              <div className="bg-gradient-to-r from-primary to-secondary p-4">
+                <h3 className="text-white font-bold text-center">
+                  Publication Facebook - RHEMA 2022
+                </h3>
+              </div>
+              <div className="p-4 bg-gray-50">
+                <div className="relative w-full" style={{ minHeight: '478px' }}>
+                  <iframe 
+                    src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2Fphoto%2F%3Ffbid%3D131795042936609%26set%3Da.131795046269942&show_text=true&width=500"
+                    width="100%" 
+                    height="478" 
+                    style={{ border: 'none', overflow: 'hidden' }}
+                    scrolling="no" 
+                    frameBorder="0" 
+                    allowFullScreen={true}
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                    className="rounded-lg"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 2021 Edition */}
+        <div className="mt-16 grid md:grid-cols-2 gap-12 items-start">
+          <div className="space-y-6">
+            <h2 className="text-3xl font-bold text-foreground">
+              Séminaire RHEMA 2021
+            </h2>
+            <div className="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-2xl p-6 border border-primary/20">
+              <h3 className="font-bold text-lg mb-2 text-foreground">Thème 2021</h3>
+              <p className="text-muted-foreground italic">
+                "Homme Themelios"
+              </p>
+            </div>
+          </div>
+
+          <div className="sticky top-24">
+            <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-border">
+              <div className="bg-gradient-to-r from-primary to-secondary p-4">
+                <h3 className="text-white font-bold text-center">
+                  Publication Facebook - RHEMA 2021
+                </h3>
+              </div>
+              <div className="p-4 bg-gray-50">
+                <div className="relative w-full" style={{ minHeight: '609px' }}>
+                  <iframe 
+                    src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid021qa9vm6ihdGzCLyiyrzUVZyiFepnLom82qhuMimPigk6ao6jDVTrhjYVjVWxixyYl%26id%3D100083183415660&show_text=true&width=500"
+                    width="100%" 
+                    height="609" 
+                    style={{ border: 'none', overflow: 'hidden' }}
+                    scrolling="no" 
+                    frameBorder="0" 
+                    allowFullScreen={true}
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                    className="rounded-lg"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Historical Timeline */}
         <div className="mt-20">
           <h2 className="text-3xl font-bold text-foreground mb-12 text-center">
