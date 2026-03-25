@@ -68,23 +68,23 @@ export function RegistrationHero() {
 
         <div className="flex flex-wrap gap-4 justify-center mb-10">
           <div className="flex items-center gap-3 bg-white/95 border-2 border-[#b82938] rounded-2xl px-5 py-3 backdrop-blur shadow-xl hover:shadow-2xl transition-shadow">
-            <FiCalendar className="w-5 h-5 text-[#51bfc8]" />
+            <FiCalendar className="w-5 h-5 text-[#b82938]" />
             <div className="text-left">
-              <div className="text-[11px] text-[#51bfc8] font-semibold uppercase tracking-wide">Dates</div>
+              <div className="text-[11px] text-[#b82938] font-semibold uppercase tracking-wide">Dates</div>
               <div className="text-sm font-bold text-[#51bfc8]">15 – 17 Mai 2026</div>
             </div>
           </div>
           <div className="flex items-center gap-3 bg-white/95 border-2 border-[#b82938] rounded-2xl px-5 py-3 backdrop-blur shadow-xl hover:shadow-2xl transition-shadow">
-            <FiMapPin className="w-5 h-5 text-[#51bfc8]" />
+            <FiMapPin className="w-5 h-5 text-[#b82938]" />
             <div className="text-left">
-              <div className="text-[11px] text-[#51bfc8] font-semibold uppercase tracking-wide">Lieu</div>
+              <div className="text-[11px] text-[#b82938] font-semibold uppercase tracking-wide">Lieu</div>
               <div className="text-sm font-bold text-[#51bfc8]">Casablanca, Maroc</div>
             </div>
           </div>
           <div className="flex items-center gap-3 bg-white/95 border-2 border-[#b82938] rounded-2xl px-5 py-3 backdrop-blur shadow-xl hover:shadow-2xl transition-shadow">
-            <FiClock className="w-5 h-5 text-[#51bfc8]" />
+            <FiClock className="w-5 h-5 text-[#b82938]" />
             <div className="text-left">
-              <div className="text-[11px] text-[#51bfc8] font-semibold uppercase tracking-wide">Ouverture</div>
+              <div className="text-[11px] text-[#b82938] font-semibold uppercase tracking-wide">Ouverture</div>
               <div className="text-sm font-bold text-[#51bfc8]">Vendredi 19h – 21h</div>
             </div>
           </div>
