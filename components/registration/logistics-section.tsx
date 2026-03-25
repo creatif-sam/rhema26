@@ -2,6 +2,7 @@
 
 import { Label } from "@/components/ui/label";
 import { FormSection } from "./form-section";
+import { YesNoToggle } from "./yes-no-toggle";
 import { FiCalendar } from "react-icons/fi";
 
 interface LogisticsSectionProps {
@@ -9,6 +10,8 @@ interface LogisticsSectionProps {
   setArrival: (value: string) => void;
   departure: string;
   setDeparture: (value: string) => void;
+  accommodation: "Oui" | "Non";
+  setAccommodation: (value: "Oui" | "Non") => void;
 }
 
 export function LogisticsSection({
@@ -16,6 +19,8 @@ export function LogisticsSection({
   setArrival,
   departure,
   setDeparture,
+  accommodation,
+  setAccommodation,
 }: LogisticsSectionProps) {
   return (
     <FormSection icon={<FiCalendar />} title="Logistique & Présence">
@@ -62,6 +67,14 @@ export function LogisticsSection({
             <option value="Lundi matin">Lundi matin</option>
             <option value="Plus tard dans la semaine">Plus tard dans la semaine</option>
           </select>
+        </div>
+
+        <div className="space-y-2">
+          <YesNoToggle
+            label="Comptez-vous profiter des solutions d'hébergement qui seront mises à disposition?"
+            value={accommodation}
+            onChange={setAccommodation}
+          />
         </div>
       </div>
     </FormSection>

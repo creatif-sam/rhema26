@@ -34,6 +34,7 @@ interface Registration {
   commission_name: string | null;
   arrival: string;
   departure: string | null;
+  accommodation: string;
   football: string;
   foot_level: string | null;
   tshirt_size: string;

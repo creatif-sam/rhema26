@@ -24,6 +24,7 @@ interface Registration {
   commission_name: string | null;
   arrival: string;
   departure: string | null;
+  accommodation: string;
   football: string;
   foot_level: string | null;
   tshirt_size: string;
@@ -146,6 +147,11 @@ export function RegistrantsTable({ registrations, onExportCSV }: RegistrantsTabl
                         Pas de foot
                       </Badge>
                     )}
+                    {reg.accommodation === "Oui" && (
+                      <Badge variant="default" className="text-xs">
+                        Hébergement
+                      </Badge>
+                    )}
                   </div>
 
                   <div className="mt-2 text-xs text-muted-foreground">
@@ -194,6 +200,9 @@ export function RegistrantsTable({ registrations, onExportCSV }: RegistrantsTabl
                     Football
                   </th>
                   <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-red-600 whitespace-nowrap">
+                    Hébergement
+                  </th>
+                  <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-red-600 whitespace-nowrap">
                     Arrivée
                   </th>
                   <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-red-600 whitespace-nowrap">
@@ -240,6 +249,17 @@ export function RegistrantsTable({ registrations, onExportCSV }: RegistrantsTabl
                       {reg.football === "Oui" ? (
                         <Badge className="text-xs flex items-center gap-1 w-fit">
                           <MdSportsSoccer className="w-3 h-3" /> {reg.foot_level || "Oui"}
+                        </Badge>
+                      ) : (
+                        <Badge variant="outline" className="text-xs">
+                          Non
+                        </Badge>
+                      )}
+                    </td>
+                    <td className="px-4 py-3">
+                      {reg.accommodation === "Oui" ? (
+                        <Badge variant="default" className="text-xs">
+                          Oui
                         </Badge>
                       ) : (
                         <Badge variant="outline" className="text-xs">

@@ -38,6 +38,7 @@ export default function Home() {
   // Logistics
   const [arrival, setArrival] = useState("");
   const [departure, setDeparture] = useState("");
+  const [accommodation, setAccommodation] = useState<"Oui" | "Non">("Non");
 
   // Football
   const [football, setFootball] = useState<"Oui" | "Non">("Non");
@@ -68,6 +69,7 @@ export default function Home() {
     setCommissionName("");
     setArrival("");
     setDeparture("");
+    setAccommodation("Non");
     setFootball("Non");
     setFootLevel("");
     setTshirtSize("");
@@ -146,6 +148,7 @@ export default function Home() {
         commission_name: commission === "Oui" ? commissionName.trim() : null,
         arrival,
         departure,
+        accommodation,
         football,
         foot_level: football === "Oui" ? footLevel : null,
         tshirt_size: tshirtSize,
@@ -231,6 +234,8 @@ export default function Home() {
             setArrival={setArrival}
             departure={departure}
             setDeparture={setDeparture}
+            accommodation={accommodation}
+            setAccommodation={setAccommodation}
           />
 
           <FootballSection

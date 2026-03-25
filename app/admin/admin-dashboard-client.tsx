@@ -32,6 +32,7 @@ interface Registration {
   commission_name: string | null;
   arrival: string;
   departure: string | null;
+  accommodation: string;
   football: string;
   foot_level: string | null;
   tshirt_size: string;
@@ -106,6 +107,7 @@ export function AdminDashboardClient({ registrations, pageVisits }: AdminDashboa
       "Laquelle",
       "Arrivée",
       "Départ",
+      "Hébergement",
       "Football",
       "Niveau",
       "Taille",
@@ -129,6 +131,7 @@ export function AdminDashboardClient({ registrations, pageVisits }: AdminDashboa
       reg.commission_name || "",
       reg.arrival,
       reg.departure || "",
+      reg.accommodation || "Non",
       reg.football,
       reg.foot_level || "",
       reg.tshirt_size,
@@ -174,6 +177,7 @@ export function AdminDashboardClient({ registrations, pageVisits }: AdminDashboa
       "Nom Commission": reg.commission_name || "",
       "Arrivée": reg.arrival,
       "Départ": reg.departure || "",
+      "Hébergement": reg.accommodation || "Non",
       "Football": reg.football,
       "Niveau Football": reg.foot_level || "",
       "Taille T-shirt": reg.tshirt_size,
