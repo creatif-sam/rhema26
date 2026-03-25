@@ -170,10 +170,10 @@ export function Navigation() {
           </Link>
 
           <Link
-            href="/inscription"
+            href="/#registration-form"
             className={cn(
               "flex flex-col items-center justify-center py-2 px-1 rounded-lg transition-colors",
-              pathname === "/inscription"
+              pathname === "/" || pathname === "/inscription"
                 ? "text-primary bg-primary/10"
                 : "text-muted-foreground hover:text-foreground hover:bg-accent/10"
             )}

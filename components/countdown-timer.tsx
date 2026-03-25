@@ -88,8 +88,9 @@ export function CountdownTimer() {
           <div className="text-3xl md:text-6xl font-bold text-red-600 mb-1 md:mb-2">
             {String(timeLeft.seconds).padStart(2, '0')}
           </div>
-          <div className="text-red-700 text-xs md:text-base font-bold uppercase tracking-wide">
-            Secondes
+          <div className="text-red-700 text-[9px] md:text-base font-bold uppercase tracking-wide">
+            <span className="md:hidden">Sec</span>
+            <span className="hidden md:inline">Secondes</span>
           </div>
         </div>
       </div>
