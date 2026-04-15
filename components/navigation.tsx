@@ -12,7 +12,8 @@ import {
   FiLogIn,
   FiHome,
   FiUsers,
-  FiCalendar
+  FiCalendar,
+  FiHeart
 } from "react-icons/fi";
 import { cn } from "@/lib/utils";
 
@@ -63,6 +64,16 @@ export function Navigation() {
                 </Link>
               ))}
               
+              <Link href="/don">
+                <Button
+                  size="sm"
+                  className="ml-2 bg-rose-500 hover:bg-rose-600 text-white border-0"
+                >
+                  <FiHeart className="w-4 h-4 mr-1.5 fill-white" />
+                  Faire un Don
+                </Button>
+              </Link>
+
               <Link href="/">
                 <Button size="sm" className="ml-2">
                   <FiEdit className="w-4 h-4 mr-1.5" />
@@ -123,6 +134,16 @@ export function Navigation() {
                   {item.label}
                 </Link>
               ))}
+              <Link href="/don">
+                <Button
+                  className="w-full bg-rose-500 hover:bg-rose-600 text-white border-0"
+                  size="sm"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <FiHeart className="w-4 h-4 mr-1.5 fill-white" />
+                  Faire un Don
+                </Button>
+              </Link>
               <Link href="/">
                 <Button className="w-full" size="sm" onClick={() => setMobileMenuOpen(false)}>
                   <FiEdit className="w-4 h-4 mr-1.5" />
@@ -142,7 +163,7 @@ export function Navigation() {
 
       {/* Mobile Bottom Navigation */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg border-t border-border shadow-lg">
-        <div className="grid grid-cols-5 gap-1 p-2">
+        <div className="grid grid-cols-6 gap-0.5 p-1.5">
           <Link
             href="/"
             className={cn(
@@ -167,6 +188,24 @@ export function Navigation() {
           >
             <FiUsers className="w-5 h-5 mb-0.5" />
             <span className="text-[10px] font-medium">HEEAM</span>
+          </Link>
+
+          <Link
+            href="/don"
+            className={cn(
+              "flex flex-col items-center justify-center py-2 px-1 rounded-lg transition-colors",
+              pathname === "/don"
+                ? "text-rose-500 bg-rose-50"
+                : "text-muted-foreground hover:text-rose-500 hover:bg-rose-50"
+            )}
+          >
+            <FiHeart
+              className={cn(
+                "w-5 h-5 mb-0.5",
+                pathname === "/don" ? "fill-rose-500 text-rose-500" : ""
+              )}
+            />
+            <span className="text-[10px] font-medium">Don</span>
           </Link>
 
           <Link
