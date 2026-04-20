@@ -163,7 +163,7 @@ export function Navigation() {
 
       {/* Mobile Bottom Navigation */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg border-t border-border shadow-lg">
-        <div className="grid grid-cols-5 gap-0.5 p-1.5">
+        <div className="grid grid-cols-6 gap-0.5 p-1.5">
           <Link
             href="/"
             className={cn(
@@ -232,6 +232,19 @@ export function Navigation() {
           >
             <FiCalendar className="w-5 h-5 mb-0.5" />
             <span className="text-[10px] font-medium">Éditions</span>
+          </Link>
+
+          <Link
+            href="/auth/login"
+            className={cn(
+              "flex flex-col items-center justify-center py-2 px-1 rounded-lg transition-colors",
+              pathname === "/auth/login"
+                ? "text-primary bg-primary/10"
+                : "text-muted-foreground hover:text-foreground hover:bg-accent/10"
+            )}
+          >
+            <FiLogIn className="w-5 h-5 mb-0.5" />
+            <span className="text-[10px] font-medium">Connexion</span>
           </Link>
         </div>
       </nav>
