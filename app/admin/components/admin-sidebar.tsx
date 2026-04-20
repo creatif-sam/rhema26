@@ -13,7 +13,8 @@ import {
   FiMenu,
   FiX,
   FiDownload,
-  FiFilter
+  FiFilter,
+  FiHeart
 } from "react-icons/fi";
 import { MdDashboard } from "react-icons/md";
 
@@ -27,6 +28,7 @@ const navigationItems = [
   { icon: <FiUsers className="w-5 h-5" />, label: "Inscrits", href: "#registrants", id: "registrants" },
   { icon: <FiBarChart2 className="w-5 h-5" />, label: "Statistiques", href: "#stats", id: "stats" },
   { icon: <FiFilter className="w-5 h-5" />, label: "Filtres", href: "#filters", id: "filters" },
+  { icon: <FiHeart className="w-5 h-5" />, label: "Dons", href: "#donations", id: "donations" },
 ];
 
 export function AdminSidebar({ onExportCSV, onLogout }: AdminSidebarProps) {

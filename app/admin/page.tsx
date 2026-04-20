@@ -39,7 +39,13 @@ export default async function AdminDashboardPage() {
     .from("page_visits")
     .select("*")
     .order("visited_at", { ascending: false })
-    .limit(1000); // Last 1000 visits
+    .limit(1000);
+
+  // Fetch donations
+  const { data: donations } = await supabase
+    .from("donations")
+    .select("*")
+    .order("created_at", { ascending: false });
 
   if (error) {
     console.error("Error fetching registrations:", error);
@@ -59,6 +65,7 @@ export default async function AdminDashboardPage() {
     <AdminDashboardClient 
       registrations={registrations || []} 
       pageVisits={pageVisits || []}
+      donations={donations || []}
     />
   );
 }

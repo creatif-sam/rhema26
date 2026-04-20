@@ -9,6 +9,8 @@ import { DashboardStats } from "@/components/dashboard/dashboard-stats";
 import { ChartBars } from "@/components/dashboard/chart-bars";
 import { RegistrantsTable } from "@/components/dashboard/registrants-table";
 import { AnalyticsOverview } from "@/components/dashboard/analytics-overview";
+import { DonationsTable, Donation } from "@/components/dashboard/donations-table";
+import { FiHeart } from "react-icons/fi";
 import { DashboardLayout } from "./components/dashboard-layout";
 import { DashboardHeader } from "./components/dashboard-header";
 import { DashboardFilters, FilterState } from "./components/dashboard-filters";
@@ -54,6 +56,7 @@ interface PageVisit {
 interface AdminDashboardClientProps {
   registrations: Registration[];
   pageVisits: PageVisit[];
+  donations: Donation[];
 }
 
 const colorMap: Record<string, string> = {
@@ -65,7 +68,7 @@ const colorMap: Record<string, string> = {
 };
 
 // Admin Dashboard Client Component with Analytics
-export function AdminDashboardClient({ registrations, pageVisits }: AdminDashboardClientProps) {
+export function AdminDashboardClient({ registrations, pageVisits, donations }: AdminDashboardClientProps) {
   const router = useRouter();
   const [filters, setFilters] = useState<FilterState>({
     city: "",
@@ -325,6 +328,18 @@ export function AdminDashboardClient({ registrations, pageVisits }: AdminDashboa
 
       <div id="registrants" className="scroll-mt-20">
         <RegistrantsTable registrations={filteredRegistrations} onExportCSV={handleExportCSV} />
+      </div>
+
+      {/* Donations Section */}
+      <div id="donations" className="scroll-mt-20 mt-10">
+        <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
+          <div className="w-1 h-5 bg-primary rounded-full" />
+          Dons reçus
+          <span className="ml-1 text-xs font-normal bg-primary/10 text-primary px-2 py-0.5 rounded-full">
+            {donations.length}
+          </span>
+        </h3>
+        <DonationsTable donations={donations} />
       </div>
     </DashboardLayout>
   );
