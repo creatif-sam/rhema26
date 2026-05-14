@@ -51,7 +51,7 @@ interface DashboardFiltersProps {
 export interface FilterState {
   city: string;
   profession: string;
-  nationality: string;
+  hebergement: string;
   football: string;
   music: string;
   tshirtSize: string;
@@ -63,7 +63,7 @@ export function DashboardFilters({ registrations, onFilterChange, onExport }: Da
   const [filters, setFilters] = useState<FilterState>({
     city: "",
     profession: "",
-    nationality: "",
+    hebergement: "",
     football: "",
     music: "",
     tshirtSize: "",
@@ -75,7 +75,7 @@ export function DashboardFilters({ registrations, onFilterChange, onExport }: Da
   const filterOptions = useMemo(() => ({
     cities: Array.from(new Set(registrations.map(r => r.city).filter(Boolean))).sort(),
     professions: Array.from(new Set(registrations.map(r => r.profession).filter(Boolean))).sort(),
-    nationalities: Array.from(new Set(registrations.map(r => r.nationality).filter(Boolean))).sort(),
+    accommodations: ["Oui", "Non"],
     tshirtSizes: ["S", "M", "L", "XL", "2XL", "3XL"],
     tshirtColors: ["Blanche", "Noire", "Bleu", "Rouge", "Vert"],
     arrivals: [
@@ -96,7 +96,7 @@ export function DashboardFilters({ registrations, onFilterChange, onExport }: Da
     const emptyFilters: FilterState = {
       city: "",
       profession: "",
-      nationality: "",
+      hebergement: "",
       football: "",
       music: "",
       tshirtSize: "",
@@ -114,7 +114,7 @@ export function DashboardFilters({ registrations, onFilterChange, onExport }: Da
     return registrations.filter(reg => {
       if (filters.city && reg.city !== filters.city) return false;
       if (filters.profession && reg.profession !== filters.profession) return false;
-      if (filters.nationality && reg.nationality !== filters.nationality) return false;
+      if (filters.hebergement && reg.accommodation !== filters.hebergement) return false;
       if (filters.football && reg.football !== filters.football) return false;
       if (filters.music && reg.music !== filters.music) return false;
       if (filters.tshirtSize && reg.tshirt_size !== filters.tshirtSize) return false;
@@ -190,20 +190,20 @@ export function DashboardFilters({ registrations, onFilterChange, onExport }: Da
             </select>
           </div>
 
-          {/* Nationality Filter */}
+          {/* Hébergement Filter */}
           <div>
             <label className="text-xs font-semibold text-muted-foreground mb-2 block">
-              Nationalité
+              Hébergement
             </label>
             <select
-              value={filters.nationality}
-              onChange={(e) => handleFilterChange("nationality", e.target.value)}
+              value={filters.hebergement}
+              onChange={(e) => handleFilterChange("hebergement", e.target.value)}
               className="w-full px-3 py-2 text-sm bg-white border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring"
             >
-              <option value="">Toutes les nationalités</option>
-              {filterOptions.nationalities.map((nationality) => (
-                <option key={nationality} value={nationality}>
-                  {nationality}
+              <option value="">Tous</option>
+              {filterOptions.accommodations.map((accommodation) => (
+                <option key={accommodation} value={accommodation}>
+                  {accommodation}
                 </option>
               ))}
             </select>

@@ -73,7 +73,7 @@ export function AdminDashboardClient({ registrations, pageVisits, donations }: A
   const [filters, setFilters] = useState<FilterState>({
     city: "",
     profession: "",
-    nationality: "",
+    hebergement: "",
     football: "",
     music: "",
     tshirtSize: "",
@@ -221,7 +221,7 @@ export function AdminDashboardClient({ registrations, pageVisits, donations }: A
     return registrations.filter(reg => {
       if (filters.city && reg.city !== filters.city) return false;
       if (filters.profession && reg.profession !== filters.profession) return false;
-      if (filters.nationality && reg.nationality !== filters.nationality) return false;
+      if (filters.hebergement && reg.accommodation !== filters.hebergement) return false;
       if (filters.football && reg.football !== filters.football) return false;
       if (filters.music && reg.music !== filters.music) return false;
       if (filters.tshirtSize && reg.tshirt_size !== filters.tshirtSize) return false;
